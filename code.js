@@ -1,37 +1,35 @@
 const calculation = document.getElementById("calculation");
 const passedcalculation = document.getElementById("passedcalculation");
 
-
-
+let arraysum = [];
+let sum = 0;
 function alter(x){
     calculation.innerText += x;
-    console.log(calculation.innerText);
 }
 
-let sumarray = []
-function op(y){
-    sumarray.push(calculation.innerText, y);
+let x;
+let reduce = 0;
+function operator(y){
+    sum = Number(calculation.innerText);
+    arraysum.push(sum);
+    reduce = arraysum.reduce((a, b) => {
+        if(arraysum === []){return a};
+        if(x === "+"){return a + b};
+        if(x === "-"){return a - b};
+        if(x === "/"){return a / b};
+        if(x === "*"){return a * b};
+    });
+    passedcalculation.innerText = reduce;
     calculation.innerText = "";
-    console.log(sumarray);
+    x = y;
+    arraysum = [];
+    arraysum.push(reduce);
 }
 
 function reset(){
-    sumarray = [];
-    passedcalculation.innerText = "";
+    arraysum = [];
     calculation.innerText = "";
-}
-
-function equal(){
-    sumarray.push(calculation.innerText);
-    let var1 = Number(sumarray[i]);
-    let var2 = Number(sumarray[i+2]);
-    let op = sumarray[i+1];
-    let sum;
-    if(op === "+") {sum = var1 + var2;}
-    else if(op === "-") {sum = var1 - var2;}
-    else if(op === "/") {sum = var1 / var2;}
-    else if(op === "*") {sum = var1 * var2;}
-    passedcalculation.innerText = sumarray + " = " + sum;
+    passedcalculation.innerText = "";
 }
 
 //button listener
@@ -45,16 +43,14 @@ const six = document.getElementById("6").addEventListener("click", function(){al
 const seven = document.getElementById("7").addEventListener("click", function(){alter(7)});
 const eight = document.getElementById("8").addEventListener("click", function(){alter(8)});
 const nine = document.getElementById("9").addEventListener("click", function(){alter(9)});
-const divide = document.getElementById("divide").addEventListener("click", function(){op("/")});
-const multiply = document.getElementById("multiply").addEventListener("click", function(){op("*")});
-const minus = document.getElementById("-").addEventListener("click", function(){op("-")});
-const plus = document.getElementById("+").addEventListener("click", function(){op("+")});
-const equals = document.getElementById("=").addEventListener("click", equal);
-const decimal = document.getElementById(".").addEventListener("click", reset);
-const delet = document.getElementById("delete").addEventListener("click", reset);
+const divide = document.getElementById("divide").addEventListener("click", function(){operator("/")});
+const multiply = document.getElementById("multiply").addEventListener("click", function(){operator("*")});
+const minus = document.getElementById("-").addEventListener("click", function(){operator("-")});
+const plus = document.getElementById("+").addEventListener("click", function(){operator("+")});
+const equals = document.getElementById("=").addEventListener("click", function(){operator()});
+// const decimal = document.getElementById(".").addEventListener("click", reset);
+// const delet = document.getElementById("delete").addEventListener("click", reset);
 const clear = document.getElementById("clear").addEventListener("click", reset);
-
-
 
 
 
@@ -66,21 +62,22 @@ const clear = document.getElementById("clear").addEventListener("click", reset);
 //     console.log(arr[0]);
 // }
 
-//function sum(){
+// function sum(){
 //    let sum = arr.reduce((a, b) => a-b, 0);
 //    passedcalculation.innerText = sum;
-//}
+// }
 
 
-//inner.text methode die nicht funktioniert
-//function alter(x){
+// inner.text methode die nicht funktioniert
+// function alter(x){
 //    calculation.innerText += x;
-//}
+// }
 
-//function sum(){
+// function sum(){
 //    let sum = calculation.innerText;
 //    passedcalculation.innerText = sum;
-//}
+// }
+
 
 //dritte methode wie auf blatt beschrieben
 // let i = 3;
@@ -97,3 +94,37 @@ const clear = document.getElementById("clear").addEventListener("click", reset);
 
 // let test = 1 + * + 3;
 // console.log(test);
+
+
+// hat jetzt auch nicht so gut funktioniert
+// function alter(x){
+//     calculation.innerText += x;
+//     console.log(calculation.innerText);
+// }
+
+// let sumarray = []
+// function op(y){
+//     sumarray.push(calculation.innerText, y);
+//     calculation.innerText = "";
+//     console.log(sumarray);
+// }
+
+// function reset(){
+//     sumarray = [];
+//     passedcalculation.innerText = "";
+//     calculation.innerText = "";
+// }
+
+// function equal(){
+//     sumarray.push(calculation.innerText);
+//     let i = 0;
+//     let var1 = Number(sumarray[i]);
+//     let var2 = Number(sumarray[i+2]);
+//     let op = sumarray[i+1];
+//     let sum;
+//     if(op === "+") {sum =+ var1 + var2;}
+//     else if(op === "-") {sum =+ var1 - var2;}
+//     else if(op === "/") {sum =+ var1 / var2;}
+//     else if(op === "*") {sum =+ var1 * var2;}
+//     passedcalculation.innerText = sumarray + " = " + sum;
+// }
