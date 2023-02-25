@@ -32,6 +32,17 @@ function reset(){
     passedcalculation.innerText = "";
 }
 
+function deci(){
+    calculation.innerText += ".";
+}
+
+function del(){
+    let ahrr = calculation.innerText;
+    ahrr = ahrr.slice(0, ahrr.length -1);
+    console.log(ahrr);
+    calculation.innerText = ahrr;
+}
+
 //button listener
 const zero = document.getElementById("0").addEventListener("click", function(){alter(0)});
 const one = document.getElementById("1").addEventListener("click", function(){alter(1)});
@@ -48,8 +59,8 @@ const multiply = document.getElementById("multiply").addEventListener("click", f
 const minus = document.getElementById("-").addEventListener("click", function(){operator("-")});
 const plus = document.getElementById("+").addEventListener("click", function(){operator("+")});
 const equals = document.getElementById("=").addEventListener("click", function(){operator()});
-// const decimal = document.getElementById(".").addEventListener("click", reset);
-// const delet = document.getElementById("delete").addEventListener("click", reset);
+const decimal = document.getElementById(".").addEventListener("click", function(){deci()});
+const delet = document.getElementById("delete").addEventListener("click", function(){del()});
 const clear = document.getElementById("clear").addEventListener("click", reset);
 
 
