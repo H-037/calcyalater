@@ -16,6 +16,7 @@ function operator(y){
         sum = Number(passedcalculation.innerText);
         arraysum.push(sum);
         reduce = arraysum.reduce((a, b) => {
+        if(x === "="){return a};
         if(x === "+"){return a + b};
         if(x === "-"){return a - b};
         if(x === "/"){return a / b};
@@ -26,6 +27,7 @@ function operator(y){
         sum = Number(calculation.innerText);
         arraysum.push(sum);
         reduce = arraysum.reduce((a, b) => {
+        if(x === "="){return a};
         if(x === "+"){return a + b};
         if(x === "-"){return a - b};
         if(x === "/"){return a / b};
@@ -72,7 +74,7 @@ const divide = document.getElementById("divide").addEventListener("click", funct
 const multiply = document.getElementById("multiply").addEventListener("click", function(){operator("*")});
 const minus = document.getElementById("-").addEventListener("click", function(){operator("-")});
 const plus = document.getElementById("+").addEventListener("click", function(){operator("+")});
-const equals = document.getElementById("=").addEventListener("click", function(){operator()});
+const equals = document.getElementById("=").addEventListener("click", function(){operator("=")});
 const decimal = document.getElementById(".").addEventListener("click", function(){deci()});
 const delet = document.getElementById("delete").addEventListener("click", function(){del()});
 const clear = document.getElementById("clear").addEventListener("click", reset);
