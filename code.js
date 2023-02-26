@@ -1,64 +1,3 @@
-const calculation = document.getElementById("calculation");
-const passedcalculation = document.getElementById("passedcalculation");
-
-let insert;
-let arraysum = [];
-let sum = 0;
-function alter(x){
-    calculation.innerText += x;
-    insert += x;
-}
-
-let x;
-let reduce = 0;
-function operator(y){
-    if(calculation.innerText === ""){
-        sum = Number(passedcalculation.innerText);
-        arraysum.push(sum);
-        reduce = arraysum.reduce((a, b) => {
-        if(x === "="){return a};
-        if(x === "+"){return a + b};
-        if(x === "-"){return a - b};
-        if(x === "/"){return a / b};
-        if(x === "*"){return a * b};
-    });
-    }
-    else{
-        sum = Number(calculation.innerText);
-        arraysum.push(sum);
-        reduce = arraysum.reduce((a, b) => {
-        if(x === "="){return a};
-        if(x === "+"){return a + b};
-        if(x === "-"){return a - b};
-        if(x === "/"){return a / b};
-        if(x === "*"){return a * b};
-    });
-
-    }
-    calculation.innerText = "";
-    passedcalculation.innerText = reduce;
-    x = y;
-    arraysum = [];
-    arraysum.push(reduce);
-}
-
-function reset(){
-    arraysum = [];
-    calculation.innerText = "";
-    passedcalculation.innerText = "";
-}
-
-function deci(){
-    calculation.innerText += ".";
-}
-
-function del(){
-    let ahrr = calculation.innerText;
-    ahrr = ahrr.slice(0, ahrr.length -1);
-    console.log(ahrr);
-    calculation.innerText = ahrr;
-}
-
 //button listener
 const zero = document.getElementById("0").addEventListener("click", function(){alter(0)});
 const one = document.getElementById("1").addEventListener("click", function(){alter(1)});
@@ -79,79 +18,104 @@ const decimal = document.getElementById(".").addEventListener("click", function(
 const delet = document.getElementById("delete").addEventListener("click", function(){del()});
 const clear = document.getElementById("clear").addEventListener("click", reset);
 
+const calculation = document.getElementById("calculation");
+const passedcalculation = document.getElementById("passedcalculation");
 
+let arraysum = [];
+let sum = 0;
+let x;
+let reduce = 0;
 
+function alter(x){
+    calculation.innerText += x;
+}
 
-//array methode die nicht funktioniert
-// function alter(x){
-//     calculation.innerText += x;
-//     arr[1] = calculation.innerText;
-//     console.log(arr[0]);
-// }
+function operator(y){
+    if(calculation.innerText === ""){
+        sum = Number(passedcalculation.innerText);
+        arraysum.push(sum);
+        reduce = arraysum.reduce((a, b) => {
+        if(x === "="){return a};
+        if(x === "+"){return a + b};
+        if(x === "-"){return a - b};
+        if(x === "/"){return a / b};
+        if(x === "*"){return a * b};
+    });
+    }
+    else{
+        sum = Number(calculation.innerText);
+        arraysum.push(sum);
+        reduce = arraysum.reduce((a, b) => {
+        if(x === "/" && sum === 0){return divizero()};
+        if(x === "="){return a};
+        if(x === "+"){return a + b};
+        if(x === "-"){return a - b};
+        if(x === "/"){return a / b};
+        if(x === "*"){return a * b};
+    });
 
-// function sum(){
-//    let sum = arr.reduce((a, b) => a-b, 0);
-//    passedcalculation.innerText = sum;
-// }
+    }
+    calculation.innerText = "";
+    passedcalculation.innerText = (reduce % 1 !== 0) ? reduce.toFixed(2) : reduce;
+    x = y;
+    arraysum = [];
+    arraysum.push(reduce);
+}
 
+function reset(){
+    arraysum = [];
+    calculation.innerText = "";
+    passedcalculation.innerText = "";
+    enable();
+}
 
-// inner.text methode die nicht funktioniert
-// function alter(x){
-//    calculation.innerText += x;
-// }
+function deci(){
+    calculation.innerText += ".";
+}
 
-// function sum(){
-//    let sum = calculation.innerText;
-//    passedcalculation.innerText = sum;
-// }
+function del(){
+    let ahrr = calculation.innerText;
+    ahrr = ahrr.slice(0, ahrr.length -1);
+    calculation.innerText = ahrr;
+}
 
+function divizero(){
+    const dzero = document.getElementById("0").disabled = true;
+    const done = document.getElementById("1").disabled = true;
+    const dtwo = document.getElementById("2").disabled = true;
+    const dthree = document.getElementById("3").disabled = true;
+    const dfour = document.getElementById("4").disabled = true;
+    const dfive = document.getElementById("5").disabled = true;
+    const dsix = document.getElementById("6").disabled = true;
+    const dseven = document.getElementById("7").disabled = true;
+    const deight = document.getElementById("8").disabled = true;
+    const dnine = document.getElementById("9").disabled = true;
+    const ddivide = document.getElementById("divide").disabled = true;
+    const dmultiply = document.getElementById("multiply").disabled = true;
+    const dminus = document.getElementById("-").disabled = true;
+    const dplus = document.getElementById("+").disabled = true;
+    const dequals = document.getElementById("=").disabled = true;
+    const ddecimal = document.getElementById(".").disabled = true;
+    const ddelet = document.getElementById("delete").disabled = true;
+    return passedcalculation.innerText = "You can't divide by 0. \n Press the clear button."
+}
 
-//dritte methode wie auf blatt beschrieben
-// let i = 3;
-// let numbers = [1, 2, 3, 4, 5, 6];
-// let operators = ["+", "-", "/", "*"];
-// let sumfunc = numbers.reduce((a, b) => {
-//         if(i===3){return a+b};
-//         if(i<3){return a-b};
-//         if(i>3){return a*b};
-//     });
-// passedcalculation.innerText = sumfunc;
-// numbers.push(2);
-// console.log(numbers);
-
-// let test = 1 + * + 3;
-// console.log(test);
-
-
-// hat jetzt auch nicht so gut funktioniert
-// function alter(x){
-//     calculation.innerText += x;
-//     console.log(calculation.innerText);
-// }
-
-// let sumarray = []
-// function op(y){
-//     sumarray.push(calculation.innerText, y);
-//     calculation.innerText = "";
-//     console.log(sumarray);
-// }
-
-// function reset(){
-//     sumarray = [];
-//     passedcalculation.innerText = "";
-//     calculation.innerText = "";
-// }
-
-// function equal(){
-//     sumarray.push(calculation.innerText);
-//     let i = 0;
-//     let var1 = Number(sumarray[i]);
-//     let var2 = Number(sumarray[i+2]);
-//     let op = sumarray[i+1];
-//     let sum;
-//     if(op === "+") {sum =+ var1 + var2;}
-//     else if(op === "-") {sum =+ var1 - var2;}
-//     else if(op === "/") {sum =+ var1 / var2;}
-//     else if(op === "*") {sum =+ var1 * var2;}
-//     passedcalculation.innerText = sumarray + " = " + sum;
-// }
+function enable(){
+    const dzero = document.getElementById("0").disabled = false;
+    const done = document.getElementById("1").disabled = false;
+    const dtwo = document.getElementById("2").disabled = false;
+    const dthree = document.getElementById("3").disabled = false;
+    const dfour = document.getElementById("4").disabled = false;
+    const dfive = document.getElementById("5").disabled = false;
+    const dsix = document.getElementById("6").disabled = false;
+    const dseven = document.getElementById("7").disabled = false;
+    const deight = document.getElementById("8").disabled = false;
+    const dnine = document.getElementById("9").disabled = false;
+    const ddivide = document.getElementById("divide").disabled = false;
+    const dmultiply = document.getElementById("multiply").disabled = false;
+    const dminus = document.getElementById("-").disabled = false;
+    const dplus = document.getElementById("+").disabled = false;
+    const dequals = document.getElementById("=").disabled = false;
+    const ddecimal = document.getElementById(".").disabled = false;
+    const ddelet = document.getElementById("delete").disabled = false;
+}
