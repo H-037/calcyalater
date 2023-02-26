@@ -38,7 +38,7 @@ body{
     margin-top: 12px;
     border-style: solid;
     border-radius: 15px 15px 0px 0px;
-    background-color: blueviolet;
+    background-color: rgb(143, 141, 143);
 }
 
 #calculation{
@@ -47,7 +47,7 @@ body{
     border-style: solid;
     border-radius: 0px 0px 15px 15px;
     border-top: 0px;
-    background-color: blueviolet;
+    background-color: rgb(136, 134, 136);
 }
 
 #buttons{
@@ -96,4 +96,18 @@ body{
     border-color: black;
     border-radius: 7px;
     margin-bottom: 12px;
+}
+
+#display{
+    display: flex;
+
+}
+
+#passedcalculation{
+    font-size: x-large;
+}
+#calculation{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 60px;
 }

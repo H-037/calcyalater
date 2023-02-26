@@ -1,26 +1,40 @@
 const calculation = document.getElementById("calculation");
 const passedcalculation = document.getElementById("passedcalculation");
 
+let insert;
 let arraysum = [];
 let sum = 0;
 function alter(x){
     calculation.innerText += x;
+    insert += x;
 }
 
 let x;
 let reduce = 0;
 function operator(y){
-    sum = Number(calculation.innerText);
-    arraysum.push(sum);
-    reduce = arraysum.reduce((a, b) => {
-        if(arraysum === []){return a};
+    if(calculation.innerText === ""){
+        sum = Number(passedcalculation.innerText);
+        arraysum.push(sum);
+        reduce = arraysum.reduce((a, b) => {
         if(x === "+"){return a + b};
         if(x === "-"){return a - b};
         if(x === "/"){return a / b};
         if(x === "*"){return a * b};
     });
-    passedcalculation.innerText = reduce;
+    }
+    else{
+        sum = Number(calculation.innerText);
+        arraysum.push(sum);
+        reduce = arraysum.reduce((a, b) => {
+        if(x === "+"){return a + b};
+        if(x === "-"){return a - b};
+        if(x === "/"){return a / b};
+        if(x === "*"){return a * b};
+    });
+
+    }
     calculation.innerText = "";
+    passedcalculation.innerText = reduce;
     x = y;
     arraysum = [];
     arraysum.push(reduce);
