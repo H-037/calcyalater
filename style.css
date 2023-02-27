@@ -86,7 +86,6 @@ body{
     height: 26vh;
     width: 42vh;
     justify-content: space-between;
-
 }
 
 .operator{
@@ -110,4 +109,12 @@ body{
     display: flex;
     justify-content: flex-end;
     font-size: 60px;
+}
+
+.operator:hover{
+    background-color: rgb(162, 166, 170);
+}
+
+.doperators:hover{
+    background-color: rgb(141, 58, 92);
 }
